@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+	</head>
+	<body>
+		<br />
+		<button type="button" class="btn btn-default topTip" data-toggle="tooltip" data-placement="top" title="顶部的 Tooltip">
+			顶部的 Tooltip
+		</button>
+		<p title="Free Web &#10;tutorials" data-toggle="tooltip">W3School.com.cn</p>
+	</body>
+</html>
+<script>
+	$(function(){
+		$("[data-toggle='tooltip']").tooltip();
+	})
+</script>

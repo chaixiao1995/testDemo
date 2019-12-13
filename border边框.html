@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body>div{
+				display: inline-block;
+			}
+			.d1{
+				width: 50px;
+				height: 50px;
+				background-color: blueviolet;
+				border: 1px solid red;
+				border-bottom: 20px solid black;
+				border-top: 20px solid silver;
+				border-right: 20px solid transparent;
+				border-left: 20px solid chartreuse;
+			}
+			.d2{
+				width: 60px;
+				height: 60px;
+				background-color: cornflowerblue;
+				box-sizing: content-box;
+				border-bottom: 20px solid black;
+			}
+			.d3{
+				width: 60px;
+				height: 60px;
+				background-color: cornflowerblue;
+				box-sizing: border-box;
+				border-bottom: 20px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="d1"></div>
+		<div class="d2"></div>
+		<div class="d3"></div>
+	</body>
+</html>

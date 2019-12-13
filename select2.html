@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/select2.min.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="js/select2.min.js" ></script>
+		<style>
+			.selectDemo{
+				width: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<span>区域：</span>
+	    <select id="area" class="selectDemo">
+	        <!--<option value="" selected="selected">请选择区域</option>-->
+	        <option value="1" selected="selected">珠海</option>
+	        <option value="2">深圳</option>
+	        <option value="3">澳门</option>
+	        <option value="4">香港</option>
+	    </select>
+	    <select id="area2" class="selectDemo">
+	        <!--<option value="" selected="selected">请选择区域</option>-->
+	        <option value="1" selected="selected">珠海</option>
+	        <option value="2">深圳</option>
+	        <option value="3">澳门</option>
+	        <option value="4">香港</option>
+	    </select>
+
+	</body>
+</html>
+<script type="text/javascript">
+    <!--页面加载完成后初始化select2控件-->
+    $(function () {
+        $(".selectDemo").select2({
+        	minimumResultsForSearch: Infinity,
+        });
+        $('.selectDemo').change(function(){
+        	console.log(123)
+        	console.log($('.selectDemo').val());
+        })
+    });
+</script>

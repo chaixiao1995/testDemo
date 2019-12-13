@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+    .border {
+		margin: 100px auto;
+		width: 200px;
+		height: 100px;
+		background: linear-gradient(green, green) left top, 
+		            linear-gradient(red, red) left top, 
+		            linear-gradient(yellow, yellow) right top, 
+		            linear-gradient(black, black) right top, 
+		            linear-gradient(red, red) left bottom, 
+		            linear-gradient(green, green) left bottom, 
+		            linear-gradient(yellow, yellow) right bottom, 
+		            linear-gradient(blue, blue) right bottom;
+		background-repeat: no-repeat;
+		background-size: 1px 24px, 24px 1px;
+	}
+	
+	
+	.el-card{
+		margin: 0 auto;
+		width: 200px;
+		height: 500px;
+	    background: radial-gradient(circle at center center, rgba(23, 48, 78, 1), rgba(20, 37, 63, 1)),
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) left top,
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) left top,
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) right top,
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) right top,
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) left bottom,
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) left bottom,
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) right bottom,
+					linear-gradient(rgba(179,224,255,0.62), rgba(179,224,255,0.62)) right bottom,
+					linear-gradient(rgba(56, 144, 184, 0.60), rgba(56, 144, 184, 0.60)) top,
+					linear-gradient(rgba(26, 87, 130, 0.60), rgba(26, 87, 130, 0.60)) bottom,
+					linear-gradient(rgba(56, 144, 184, 0.60), rgba(219, 240, 255, 0.80), rgba(26, 87, 130, 0.60)) left,
+					linear-gradient(rgba(56, 144, 184, 0.60), rgba(219, 240, 255, 0.80), rgba(26, 87, 130, 0.60)) right;
+	  background-repeat: no-repeat;
+	  background-position: 1px 1px, 0px 0px, 0px 0px, 0px 100%, 0px 100%, 100% 0px, 100% 0px, 100% 100%, 100% 100%, 0px 0px, 0px 100%, 0px 100%, 100% 100%;
+	  background-size: calc(100% - 2px) calc(100% - 2px), 1px 10px, 10px 1px, 1px 10px, 10px 1px, 1px 10px, 10px 1px, 1px 10px, 10px 1px, 100% 1px, 100% 1px, 1px 100%, 1px 100%;
+	}
+	</style>
+</head>
+
+<body>
+    <div class="border"></div>
+    
+    <div class="el-card"></div>
+</body>
+</html>

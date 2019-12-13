@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Bootstrap 实例 - 模态框（Modal）插件</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<button data-toggle="modal" data-target="#testModal">创建模态框</button>
+		<!--模态框start-->
+		<form>
+			<div id="testModal" class="modal fade" style="width: 500px;height:500px;margin: 20px auto;background: white;">
+				<!--右上角的关闭按钮-->
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2>模态框内容</h2>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary">提交更改</button>
+				</div>	
+			</div>
+			<!--模态框end-->
+		</form>
+		
+	</body>
+</html>
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+	</head>
+	<body>
+		<input type="text" class="test1" />
+	</body>
+</html>
+<script>
+	$('.test1').blur(function(){
+		var str = $('.test1').val();
+//		var reg = /^[a-zA-Z\u4e00-\u9fa5]+$/;
+//		验证有数字
+//		var reg = /[0-9]/;
+		//是否含有中文
+//		var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+		//是否含有空格
+//		var reg = /\s/g;
+		//只能输入数字和小数点
+//		var reg = /^\d+(?=\.{0,1}\d+$|$)/
+		//只能输入非负整数
+		var reg = /^[0-9]*[0-9][0-9]*$/
+		
+		console.log(reg.test(str));
+//		console.log(str.replace(/\s/g,''))
+
+	})
+</script>

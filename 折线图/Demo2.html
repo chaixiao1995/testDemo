@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/echarts.min.js" ></script>
+	</head>
+	<body>
+		<div id="main" style="height:400px;width: 600px"></div>
+	</body>
+</html>
+<script>
+	// 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById("main"));
+    var option = {
+        title: {
+            text: 'title_text',
+            subtext: 'title_subtext'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {//鼠标滑过的线条样式
+                type: 'line',
+                lineStyle: {
+                    color: 'red',//颜色
+                    width: 1,//宽度
+                    type: 'solid'//实线
+                }
+            },
+            formatter: function(value) {//鼠标滑过时显示内容的格式化
+                var template = "";
+                template += 'Value1：' + value[0].axisValue + "<br/>";
+                template += 'Value2：' + value[0].data;
+                return template;
+            }
+        },
+        //右上角工具条
+        toolbox: {
+            show: true,
+            feature: {
+                mark: { show: true },//目前还不知道有啥用
+                dataView: { show: true, readOnly: true },//数据视图
+                magicType: { show: true, type: ['line', 'bar'] },//折线与柱状的切换
+                restore: { show: true },//重置
+                saveAsImage: { show: true }//保存为图片
+            }
+        },
+        calculable: true,
+        xAxis: [{//x轴的数据
+            type: 'category',
+            name:'x轴标题',
+            boundaryGap: false,//若为true,则x轴的值不在刻度上.
+            data: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+            axisLabel: {//y轴的内容格式化,很有用的属性
+                formatter: '{value} xUnit'
+            }
+        }],
+        yAxis: [{
+            type: 'value',
+            name: "y轴标题",
+            axisLabel: {//y轴的内容格式化,很有用的属性
+                formatter: '{value} yUnit'
+            }
+        }],
+        legend: {
+            data: ['legend_data']//要与series中的name一致
+        },
+        series: [{
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        color: '#3399ff'//控制折线颜色
+                    }
+                }
+            },
+            name: 'legend_data',
+            type: 'line',
+            data: [11, 11, 15, 13, 12, 13, 10],
+            markPoint: {
+                data: [/*显示最值*/
+                    { type: 'max'}, 
+                    { type: 'min'},
+                ]
+            },
+            markLine: {
+                data: [
+                    { type: 'average'}//显示平均值
+                ]
+            }
+        }]
+    };
+
+    // 为echarts对象加载数据
+    myChart.setOption(option);
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+	</head>
+	<body>
+		<input type="text" class="input" onchange="transform()"/>
+		<br />
+		<p></p>
+	</body>
+</html>
+<script>
+	var arr = [], num=0;
+	function transform() {
+		var val = $('.input').val();
+		arr = [];
+		num=0;
+		for(var i=val.split('').length-1; i>=0; i--){
+			var v = val.split('')[i];
+			if((v>='a'&&v<='z')||(v>='A'&&v<='Z')){
+				check(v);
+			}else{
+				arr[i] = v;
+			}
+		}
+		console.log(arr, arr.join(''))
+	}
+	function check(v) {
+		if(!arr[num]){
+			arr[num] = v;
+			num++; 
+		} else {
+			num++;
+			check(v);
+		}
+	}
+</script>

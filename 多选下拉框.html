@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<link rel="stylesheet" href="css/bootstrap.min.css" />-->
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> 
+		<link rel="stylesheet" href="css/bootstrap-multiselect.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap-multiselect.js" ></script>
+		<style>
+			#example-selectedClass-container li.multiselect-selected a label {
+		        color: red;
+		    }
+		</style>
+		
+
+
+	</head>
+	<body>
+		<div style="margin: 0 auto;text-align: center;">
+			<select id = "example-getting-started" multiple="multiple">  
+			    <option value = "cheese" > 奶酪</ option> 
+			    <option value = "tomatoes" > 西红柿</ option> 
+			    <option value = "mozarella" > Mozzarella </ option> 
+			    <option value = "mushrooms" > 蘑菇</ option> 
+			    <option value = "pepperoni" > 辣椒粉</ option> 
+			    <option value = "onions" > 洋葱</ option> 
+			</select>
+			
+			<!--optgroup，没有multiple="multipe"时，下拉框为单选，且默认显示第一个option-->
+			<select id="example-multiple-optgroups">
+			    <optgroup label="Group 1">
+			        <option value="1-1">Option 1.1</option>
+			        <option value="1-2">Option 1.2</option>
+			        <option value="1-3">Option 1.3</option>
+			    </optgroup>
+			    <optgroup label="Group 2">
+			        <option value="2-1">Option 2.1</option>
+			        <option value="2-2">Option 2.2</option>
+			        <option value="2-3">Option 2.3</option>
+			    </optgroup>
+			</select>
+			
+			<!--enableHTML 为true时，支持html语句；为false时，html语句原样输出（默认为false）-->
+			<span>example-xss</span>
+			<select id="example-xss" multiple="multiple">
+			    <option value="1">&lt;script&gt;alert(1);&lt;/script&gt;</option>
+			</select>
+			<select id="example-xss-html" multiple="multiple">
+			    <option value="1">&lt;span style="color:red"&gt;Option 1&lt;/span&gt;</option>
+			</select>
+			
+			<!--enableClickableOptGroups为true时，optgroup可以点击，从而选择属于同一组的所有选项。（对于被禁用的选项，则不会被勾选上）-->
+			<span>example-enableClickableOptGroups</span>
+			<select id="example-enableClickableOptGroups" multiple="multiple" >
+			    <optgroup label="Group 1">
+			        <option value="1-1">Option 1.1</option>
+			        <option value="1-2">Option 1.2</option>
+			        <option value="1-3" disabled="disabled">Option 1.3</option>
+			    </optgroup>
+			    <optgroup label="Group 2">
+			        <option value="2-1">Option 2.1</option>
+			        <option value="2-2">Option 2.2</option>
+			        <option value="2-3">Option 2.3</option>
+			    </optgroup>
+			</select>
+			
+			<!--disableIfEmpty-->
+			<select id="example-disableIfEmpty" multiple="multiple"></select>
+			
+			<!--disabledText-->
+			<select id="example-disabledText" multiple="multiple" disabled="disabled">
+				<option value="1-1">Option 1.1</option>
+			    <option value="1-2">Option 1.2</option>
+			</select>
+			
+			<!--checkboxName-->
+			<select id="example-checkboxName" multiple="multiple">
+				<option value="1-1">Option 1.1</option>
+			    <option value="1-2">Option 1.2</option>
+			    <option value="2-1">Option 2.1</option>
+		        <option value="2-2">Option 2.2</option>
+		        <option value="2-3">Option 2.3</option>
+			</select>
+			
+			<!--buttonText-->
+			<select id="example-buttonText" multiple="multiple">
+				<option value="1">选项1</option>
+				<option value="2" selected="selected" disabled>选项2</option>
+				<option value="3">选项3</option>
+				<option value="4">选项4</option>
+				<option value="5">选项5</option>
+				<option value="6">选项6</option>
+			</select>
+			
+			<select id="example-selectedClass-container" multiple="multiple">
+				<option value="1">选项1A</option>
+				<option value="2">选项2a</option>
+				<option value="3">选项3B</option>
+				<option value="4">选项4b</option>
+				<option value="5">选项5</option>
+				<option value="6">选项6</option>
+				<option value="7">banana</option>
+			</select>
+			
+		</div>
+		<br /><br /><br />
+		<select id="exapmle-drop" multiple="multiple">
+			<option value="1">选项1</option>
+			<option value="2">选项2</option>
+		</select>
+		
+		<hr />
+		<form class="btn-group" id="example-reset-form">
+		    <div class="btn-group">
+		        <select id="example-reset" multiple="multiple">
+		            <option value="1">Option 1</option>
+		            <option value="2">Option 2</option>
+		            <option value="3">Option 3</option>
+		            <option value="4">Option 4</option>
+		            <option value="5">Option 5</option>
+		            <option value="6">Option 6</option>
+		        </select>
+		        <button type="reset" id="example-reset-button" class="btn btn-default">Reset</button>
+		    </div>
+		</form>
+	</body>
+</html>
+<script>
+//	$(document).ready(function() {
+//      $('#example-reset').multiselect();
+//      $('#example-reset-form').on('reset', function() {
+//          $('#example-reset option:selected').each(function() {
+//              $(this).prop('selected', false);
+//          })
+// 
+//          $('#example-reset').multiselect('refresh');
+//      });
+//  });
+
+	$(function(){
+		$('#example-getting-started').multiselect({
+			nonSelectedText: '请选择',
+//			buttonClass: 'btn btn-link'
+//			onInitialized: function(select, container) {
+//              alert('Initialized.');
+//          }
+//			enableFiltering: true
+		});
+		$('#example-multiple-optgroups').multiselect();
+		$('#example-xss').multiselect();
+		$('#example-xss-html').multiselect({
+			enableHTML: true
+		});
+		$('#example-enableClickableOptGroups').multiselect({
+			enableClickableOptGroups: true,
+			enableCollapsibleOptGroups: true,
+			enableFiltering: true,
+            includeSelectAllOption: true,
+			onChange: function(option, checked,) {
+                alert(option.length + ' options ' + (checked ? 'selected' : 'deselected'));
+                if(checked){
+                	console.log(option);
+                }
+            }
+		});
+		$('#example-disableIfEmpty').multiselect({
+			disableIfEmpty: true
+		});
+		$('#example-disabledText').multiselect({
+			disableIfEmpty: true,
+			disabledText: '被禁用中...'
+		});
+		$('#exapmle-drop').multiselect({
+//			buttonWidth: 100,
+			maxHeight: 200,
+//			dropRight: true	,
+			dropUp: true
+		});
+		$('#example-checkboxName').multiselect({
+			checkboxName: function(option) {
+              return 'multiselect[]';
+          }
+		});
+		$('#example-buttonText').multiselect({
+//			numberDisplayed: 1 ,
+          buttonText: function(options, select) {
+	          if (options.length === 0) {
+	              return '请选择 ';
+	          }else {
+	               var labels = [];
+	               options.each(function() {
+	                   if ($(this).attr('label') !== undefined) {
+	                       labels.push($(this).attr('label'));
+	                   }
+	                   else {
+	                       labels.push($(this).html());
+	                   }
+	               });
+	               return labels.join(', ') + '';
+	           }
+          },
+          delimiterText: '\n',
+          optionClass: function(element) {
+              var value = $(element).val();
+ 				console.log(element)
+              if (value%2 == 0) {
+                  return 'even';
+              }
+             else {
+                 return 'odd';
+              }
+          }
+//			includeSelectAllOption: true,
+//          allSelectedText: 'no option left...'
+      });
+		$('#example-selectedClass-container').multiselect({
+			buttonContainer: '<div class="btn-group" id="example-selectedClass-container"></div>',
+			selectedClass: 'multiselect-selected',
+			includeSelectAllOption: true,
+			selectAllText: '全选',
+			enableFiltering: true,
+//			enableCaseInsensitiveFiltering: true,
+//			enableFullValueFiltering: true,
+//			filterBehavior: 'value',
+//			filterBehavior: 'text',
+			filterPlaceholder: '搜索。。。'
+		});
+		
+		
+	})
+	
+</script>

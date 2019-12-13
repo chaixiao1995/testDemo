@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+	</head>
+
+	<body>
+
+		<p id="demo">单击按钮给数组添加新的元素。</p>
+		<button onclick="myFunction()">点我</button>
+
+	</body>
+
+</html>
+<script>
+	var fruits = [{'a': '123'}, {'b':'456'}];
+
+	function myFunction() {
+		fruits.push([{'a': '123'}, {'b':'456'}]);
+		$('#demo').html(fruits);
+		console.log(fruits);
+	}
+</script>

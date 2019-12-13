@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-switch.min.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap-switch.min.js" ></script>
+		<style>
+			.box{
+				width: 70px;
+				margin: 0 auto;
+				white-space: nowrap;
+				overflow: hidden;
+				border: 1px solid grey;
+			}
+			div span{
+				display: inline-block;
+				width: 44px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<span>123</span>
+		<input type="checkbox" checked name="status"/>
+		<div class="box">
+			<span style="background-color:gainsboro ;">开</span>
+			<span >&nbsp;</span>
+			<span style="background-color:cornflowerblue ;">关</span>
+		</div>
+	</body>
+</html>
+<script>
+	var flag = true;
+	$('.box').click(function(){
+		if(flag){
+			$('.box').find('span').css('transform','translateX(-70px)');
+			flag = false;
+		}else{
+			$('.box').find('span').css('transform','translateX(0)');
+			flag = true;
+		}
+	});
+	if(flag){
+		console.log(1);
+	}else{
+		console.log(2);
+	}
+	$('[name="status"]').bootstrapSwitch({  
+        onText:"交集",  
+        offText:"并集",  
+        onColor:"default",  
+        offColor:"warning",  
+        size:"mini",  
+        onSwitchChange:function(event,state){  
+            if(state==true){  
+                $(this).val("1");  
+            }else{  
+                $(this).val("2");  
+            }  
+        }  
+    })  
+</script>

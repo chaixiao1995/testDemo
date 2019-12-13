@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.test {
+				color: red;
+			}
+			.test:first-of-type{
+				color: blue;
+			}
+			.test1:nth-of-type(3){
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>第一个页面</h1>
+		<div>div代码块</div>
+		<p class="test">第一个test</p>
+		<p class="test">第二个test</p>
+		<p class="test test1">第三个test</p>
+		<div>div代码块</div>
+		<h1>第一个页面</h1>
+	</body>
+</html>

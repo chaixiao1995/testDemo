@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> 
+		<link rel="stylesheet" href="css/bootstrap-multiselect.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap-multiselect.js" ></script>
+	</head>
+	<body>
+		<input type="text" class="input1"/>
+		<p></p>
+		
+		<select id="example-single">
+		    <option value="1">Option 1</option>
+		    <option value="2">Option 2</option>
+		    <option value="3">Option 3</option>
+		    <option value="4">Option 4</option>
+		    <option value="5">Option 5</option>
+		    <option value="6">Option 6</option>
+		</select>
+	</body>
+</html>
+<script>
+	$('.input1').blur(function(){
+		var str = $('.input1').val();
+		console.log(str);
+		var reg = /^[a-z0-9]{6,16}$/;
+		console.log(reg.test(str));
+	})
+	$('#example-single').multiselect();
+</script>

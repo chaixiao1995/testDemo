@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-multiselect.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+	</head>
+
+	<body>
+		<select class="test" multiple="multiple">
+			<option value="1"> 奶酪</option>
+			<option value="tomatoes"> 西红柿</option>
+			<option value="mozarella"> Mozzarella </option>
+			<option value="mushrooms"> 蘑菇</option>
+			<option value="pepperoni"> 辣椒粉</option>
+			<option value="2"> 洋葱</option>
+		</select>
+
+		<a href="#" onclick="downLoad()">点击下载</a>
+		<a href="#">点击下载2</a>
+
+
+	</body>
+
+</html>
+<script>
+	$('.test').multiselect({
+		buttonWidth: '540px',
+		nonSelectedText: '请选择',
+		buttonText: function(options, select) {
+			if(options.length === 0) {
+				return '请选择';
+			} else {
+				var labels = [];
+				options.each(function() {
+					if($(this).attr('label') !== undefined) {
+						labels.push($(this).attr('label'));
+					} else {
+						labels.push($(this).html());
+					}
+				});
+				return labels.join(', ') + '';
+			}
+		}
+	})
+	var arr = ['1', '2'];
+	$('select[name="login_week"]').multiselect('select', arr);
+	$('select[name="login_week"]').multiselect('refresh');
+
+	//文件下载
+	function downLoad() {
+		window.open('http://106.14.92.171:21059/document/v1/download/3268');
+	}
+</script>

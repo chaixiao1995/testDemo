@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>获取模型属性</title>
+		<style media="screen">
+			* {
+				margin: 0;
+				padding: 0
+			}
+			
+			html,
+			body {
+				height: 100%
+			}
+			
+			.main {
+				display: flex;
+				flex-direction: column;
+				overflow: hidden;
+				height: 100%;
+				width: 100%
+			}
+			
+			.model {
+				flex: 1
+			}
+			
+			.button {
+				margin: 5px auto;
+				width: 80px;
+				height: 30px;
+				background: #11DAB7;
+				color: #FFFFFF;
+				border-radius: 3px;
+				border: none;
+				cursor: pointer
+			}
+		</style>
+		<!-- 引用BIMFACE的JavaScript显示组件库 -->
+		<script src="https://static.bimface.com/api/BimfaceSDKLoader/BimfaceSDKLoader@latest-release.js" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!-- 定义DOM元素，用于在该DOM元素中显示模型或图纸 -->
+		<div class='main'>
+			<div class='buttons'>
+				<button type="button" class="button" onclick="getComponentProperty()">构件属性</button>
+				<button type="button" class="button" onclick="getModelTree()">目录树信息</button>
+				<button type="button" class="button" onclick="hideComponents()">隐藏构件</button>
+				<button type="button" class="button" onclick="showComponents()">显示构件</button>
+				<button type="button" class="button" onclick="selectedCompnentsById()">选中构件</button>
+				<button type="button" class="button" onclick="restorePerspective()">还原视角</button>
+				<button type="button" class="button" onclick="fullScreen(true)">进入全屏</button>
+				<button type="button" class="button" onclick="fullScreen(false)">退出全屏</button>
+			</div>
+			<!-- 定义DOM元素，用于在该DOM元素中显示模型或图纸 -->
+			<div class='model' id="domId"></div>
+		</div>
+		<script type="text/javascript">
+			var viewer3D;
+			var app;
+			var cameraState, modelState;
+			var viewToken = 'a81b18bd31d44d99b0169afdcbcfb6c6';
+			// 初始化显示组件(// 设置BIMFACE JSSDK加载器的配置信息)
+			var loaderConfig = new BimfaceSDKLoaderConfig();
+			loaderConfig.viewToken = viewToken;
+			// 加载BIMFACE JSSDK加载器
+			BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback);
+
+			// 模型加载成功回调函数
+			function successCallback(viewMetaData) {
+				if(viewMetaData.viewType == "3DView") {
+					// ======== 判断是否为3D模型 ========        
+					// 获取DOM元素
+					var dom4Show = document.getElementById('domId');
+					// 设置WebApplication3D的配置项
+					var webAppConfig = new Glodon.Bimface.Application.WebApplication3DConfig();
+					webAppConfig.domElement = dom4Show;
+					// 创建WebApplication3D，用以显示模型
+					app = new Glodon.Bimface.Application.WebApplication3D(webAppConfig);
+					// 添加待显示的模型
+					app.addView(viewToken);
+					// 从WebApplication获取viewer3D对象
+					viewer3D = app.getViewer();
+					
+					// 监听添加view完成的事件
+					viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ViewAdded, function() {
+						//自适应屏幕大小
+						window.onresize = function() {
+							viewer3D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40)
+						}
+						// 调用viewer3D对象的Method，可以继续扩展功能
+						// 渲染3D模型
+						viewer3D.render();
+
+						getModelStatus();
+					});
+					// 选中id为"271431"的构件
+//					viewer3D.addSelectedComponentsById(["271431"]);
+//					console.log(viewer3D.getSelectedComponents(), 'ppppp')
+					
+					// 监听添加view点击构件的监听事件
+//			        viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.MouseClicked, function (objectdata) {
+//			            //获取点击构件的相关属性
+//			            console.log(objectdata, '点击构件的相关属性', objectdata.objectId)
+//			        });   
+					
+					// 获取点击构件的相关属性（包括点选和框选）
+					viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.SelectionChanged, function (objectdata) {
+			            console.log(objectdata, '选中构件的id--------')
+			        });  
+				}
+			}
+
+			function failureCallback(error) {
+				console.log(error);
+			}
+			//根据构件id获取构件名称
+			function getComponentProperty(id) {
+				if (!id) id = 307240
+				viewer3D.getComponentProperty(id, function(objectdata) {
+					console.log(objectdata)
+//					alert(JSON.stringify(objectdata))
+				});
+			}
+
+			function getModelTree() {
+				viewer3D.getModelTree(function(objectdata) {
+					console.log(objectdata)
+					alert(JSON.stringify(objectdata))
+				});
+			}
+			
+			//获取选中的构件信息
+			function getSelectedComponents() {
+				return viewer3D.getSelectedComponents()
+			}
+			
+			//隐藏构件
+			function hideComponents(ids){
+				if (!ids) ids = [
+		        	{"levelName":"F2"}, {"levelName":"F1"}, {"levelName":"标高 5"}, {elementId: 267327}
+		        	]
+		      	viewer3D.hideComponentsByObjectData(ids);
+		      	viewer3D.render();
+		    }
+			
+			//显示构件
+			function showComponents(ids){
+				if (!ids) ids = [
+		        	{elementId: 267327}
+		        	]
+		      	viewer3D.showComponentsByObjectData(ids);
+		      	viewer3D.render();
+		    }
+			
+			//选中指定构件
+			function selectedCompnentsById(ids) {
+//				if (!ids) ids = [271431];
+				viewer3D.addSelectedComponentsById(ids);
+				viewer3D.render();
+			}
+			//根据构件id从选中集合中移除
+			function removeSelectedId(ids) {
+				viewer3D.removeSelectedId(ids);
+				viewer3D.render();
+			}
+			
+			//取消所有选中的构件
+			function cancelSelectedComponent() {
+				viewer3D.clearSelectedComponents();
+				viewer3D.render();
+			}
+			//获取模型基本信息（构件数）
+			function getModelInfo() {
+				viewer3D.getInformation();
+			}
+			//隐藏模型全部构件
+			function hideModel() {
+				viewer3D.hideAllComponents();
+				viewer3D.render();
+			}
+			//卸载模型
+			function destroyModel(viewToken) {
+				viewer3D.removeView(viewToken);
+			}
+			//设置背景色
+			function setModelBg() {
+				var color = new Glodon.Web.Graphics.Color('#9298AA', 1);
+				viewer3D.setBackgroundColor(color);
+      			viewer3D.render();
+			}
+			//构件着色
+//			overrideComponents(["4331098", "4337442"])
+			function overrideComponents(ids){
+				if (!ids) ids = [267327]
+		      	var color = new Glodon.Web.Graphics.Color("#DCEDC8", 1);
+		      	viewer3D.overrideComponentsColorById(ids, color);
+		      	viewer3D.render();
+		    }
+			//恢复颜色
+			function restoreComponents(ids){
+				if (!ids) ids = [267327]
+		      	viewer3D.restoreComponentsColorById(ids);
+		      	viewer3D.render();
+		    }
+//			function getCameraStatus(){
+//		      	cameraState = viewer3D.getCameraStatus();
+//		      	viewer3D.render();
+//		    }
+//			//还原视角
+//			function restorePerspective() {
+//				viewer3D.setCameraStatus(cameraState);
+//    			viewer3D.render();
+//			}
+			function getModelStatus(){
+		      	modelState = viewer3D.getCurrentState();
+		      	viewer3D.render();
+		    }
+			//还原视角
+			function restorePerspective() {
+				viewer3D.setState(modelState);
+      			viewer3D.render();
+			}
+			
+			//全屏
+			function fullScreen(flag) {
+				viewer3D.enableFullScreen(flag);
+			}
+		</script>
