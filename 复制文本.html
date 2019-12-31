@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="" id="copyArea" value="aaa--测试一下" readonly="readonly"/>
+		<input type='button' value='复制链接' onclick="copyContent()">
+	</body>
+</html>
+<script type="text/javascript">
+	function copyContent() {
+		var hidden = document.getElementById("copyArea")
+        hidden.focus(); // 选择对象
+        hidden.setSelectionRange(0, hidden.value.length) // 选中input框中的值
+        document.execCommand("Copy"); // 执行浏览器复制命令(将光标选中的部分复制到剪切板)
+        console.log("复制成功,复制内容为:" + hidden.value)
+	}
+</script>

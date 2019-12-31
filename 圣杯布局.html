@@ -4,9 +4,18 @@
 		<meta charset="UTF-8">
 		<title>圣杯布局</title>
 		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.header {
+				height: 60px;
+				background: #EEA236;
+			}
 			.box {
 				padding: 0 200px 0 150px;
-				height: 500px;
+				/*height: 500px;*/
+				float: left;
 			}
 			.col {
 				float: left;
@@ -28,13 +37,21 @@
 				width: 200px;
 				margin-right: -100%;
 			}
+			.footer {
+				background: #BCE8F1;
+				clear: both;
+			}
 		</style>
 	</head>
 	<body>
-		<div class="box">
-			<div class="col" id="middle"></div>
-			<div class="col" id="left"></div>
-			<div class="col" id="right"></div>
+		<div id="container">
+			<div class="header">header</div>
+			<div class="box">
+				<div class="col" id="middle"></div>
+				<div class="col" id="left"></div>
+				<div class="col" id="right"></div>
+			</div>
+			<div class="footer">footer</div>
 		</div>
 	</body>
 </html>
