@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>节流（throttle）</title>
+		<style>
+			#content {
+				height:150px;
+				line-height:150px;
+				text-align:center; 
+				color: #fff;
+				background-color:#ccc;
+				font-size:80px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content"></div>
+	</body>
+</html>
+
+<script>
+    let num = 1;
+    let content = document.getElementById('content');
+
+    function count() {
+        content.innerHTML = num++;
+    };
+    content.onmousemove = count;
+    
+    //时间戳版
+    function throttle1(func, wait) {
+	    let previous = 0;
+	    return function() {
+	        let now = Date.now();
+	        let context = this;
+	        let args = arguments;
+	        if (now - previous > wait) {
+	            func.apply(context, args);
+	            previous = now;
+	        }
+	    }
+	}
+    //定时器版
+    function throttle2(func, wait) {
+	    let timeout;
+	    return function() {
+	        let context = this;
+	        let args = arguments;
+	        if (!timeout) {
+	            timeout = setTimeout(() => {
+	                timeout = null;
+	                func.apply(context, args)
+	            }, wait)
+	        }
+	
+	    }
+	}
+    
+    content.onmousemove = throttle1(count, 2000);
+    
+</script>
