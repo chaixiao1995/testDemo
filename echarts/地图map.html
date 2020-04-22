@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>map</title>
+		<style>
+			.box {
+				width: 800px;
+				height: 300px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+</html>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/echarts.min.js"></script>
+<script type="text/javascript" src="../js/china.js"></script>
+<script>
+	var myChart = echarts.init($('.box')[0]);
+	option = {
+	    title : {
+//	        text: 'iphone销量',
+//	        subtext: '纯属虚构',
+	        left: 'center'
+	    },
+	    tooltip : {
+	        trigger: 'item' // 数据项图形触发
+	    },
+//	    legend: {
+//	        orient: 'vertical',
+//	        left: 'left',
+//	        data:['iphone3','iphone4','iphone5']
+//	    },
+	    visualMap: {
+	        min: 0,
+	        max: 3,
+//	        splitNumber: 3,
+			text: ['高','低'],
+	        inRange: {
+	            color: ['#0000ff','#00ff00','#ff0000']
+	        },
+	        show: true // 是否显示左下角图注 
+	    },
+	    toolbox: {
+	        show: true,
+	        orient : 'vertical',
+	        left: 'right',
+	        top: 'center',
+	        feature : {
+	            mark : {show: true},
+	            dataView : {show: true, readOnly: false},
+	            restore : {show: true},
+	            saveAsImage : {show: true}
+	        }
+	    },
+	    series : [
+	        {
+	            name: '省份',
+	            type: 'map',
+	            mapType: 'china',
+	            roam: true,
+	            label: {
+	                normal: {
+	                    show: false
+	                },
+	                emphasis: {
+	                    show: true
+	                }
+	            },
+	            data:[
+	                {name: "新疆", value: 0.5},
+		            {name: "西藏", value: 1.5},
+		            {name: "黑龙江", value: 2.5}
+	            ],
+//	            data:[
+//	                {name: '北京',value: Math.floor(Math.random()*2)},
+//	                {name: '天津',value: Math.floor(Math.random()*2) + 1},
+//	                {name: '上海',value: Math.floor(Math.random()*2) + 2},
+//	                {name: '重庆',value: Math.floor(Math.random()*2) + 3},
+//	                {name: '河北',value: Math.floor(Math.random()*2) + 4},
+//	                {name: '河南',value: Math.floor(Math.random()*2) + 5},
+//	                {name: '云南',value: Math.floor(Math.random()*2) + 6},
+//	                {name: '辽宁',value: Math.floor(Math.random()*2) + 7},
+//	                {name: '黑龙江',value: Math.floor(Math.random()*2) + 8},
+//	                {name: '湖南',value: Math.floor(Math.random()*2) + 9},
+//	                {name: '安徽',value: Math.floor(Math.random()*2) + 10},
+//	                {name: '山东',value: Math.floor(Math.random()*2) + 11},
+//	                {name: '新疆',value: Math.floor(Math.random()*2) + 12},
+//	                {name: '江苏',value: Math.floor(Math.random()*2) + 13},
+//	                {name: '浙江',value: Math.floor(Math.random()*2) + 14},
+//	                {name: '江西',value: Math.floor(Math.random()*2) + 15},
+//	                {name: '湖北',value: Math.floor(Math.random()*2) + 16},
+//	                {name: '广西',value: Math.floor(Math.random()*2) + 17},
+//	                {name: '甘肃',value: Math.floor(Math.random()*2) + 18},
+//	                {name: '山西',value: Math.floor(Math.random()*2) + 19},
+//	                {name: '内蒙古',value: Math.floor(Math.random()*2) + 20},
+//	                {name: '陕西',value: Math.floor(Math.random()*2) + 21},
+//	                {name: '吉林',value: Math.floor(Math.random()*2) + 22},
+//	                {name: '福建',value: Math.floor(Math.random()*2) + 23},
+//	                {name: '贵州',value: Math.floor(Math.random()*2) + 24},
+//	                {name: '广东',value: Math.floor(Math.random()*2) + 25},
+//	                {name: '青海',value: Math.floor(Math.random()*2) + 26},
+//	                {name: '西藏',value: Math.floor(Math.random()*2) + 27},
+//	                {name: '四川',value: Math.floor(Math.random()*2) + 28},
+//	                {name: '宁夏',value: Math.floor(Math.random()*2) + 29},
+//	                {name: '海南',value: Math.floor(Math.random()*2) + 30},
+//	                {name: '台湾',value: Math.floor(Math.random()*2) + 31},
+//	                {name: '香港',value: Math.floor(Math.random()*2) + 32},
+//	                {name: '澳门',value: Math.floor(Math.random()*2) + 33}
+//	            ]
+	        }
+	    ]
+	};
+	myChart.setOption(option);
+</script>
